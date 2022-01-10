@@ -30,7 +30,7 @@ public class Login {
         
         System.out.println("Number of Users:"+users);
         
-        for (int i=1; i<users; i++) {
+        for (int i=6; i<users; i++) {
         	
         	String uname = rd.readData(i, "UserName");
             String pwd = rd.readData(i, "Password");
