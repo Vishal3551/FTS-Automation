@@ -1,5 +1,7 @@
 package com.fts.pages;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -68,7 +70,13 @@ public class LoginPom {
 	
 	public static WebElement chkHIPAA837I(WebDriver driver)
 	{
-	 WebElement chkHIPAA837I = driver.findElement(By.xpath("//*[@name='uploadForm:_id19']"));
+		WebElement chkHIPAA837I = driver.findElement(By.xpath("//*[@name='uploadForm:_id19']"));
+	 	return chkHIPAA837I;
+	}
+	
+	public static List<WebElement> chkHIPAA837IList(WebDriver driver)
+	{
+		List<WebElement> chkHIPAA837I = driver.findElements(By.xpath("//*[@name='uploadForm:_id19']"));
 	 	return chkHIPAA837I;
 	}
 	

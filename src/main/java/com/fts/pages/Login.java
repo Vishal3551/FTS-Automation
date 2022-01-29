@@ -7,6 +7,7 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -19,6 +20,7 @@ import org.testng.annotations.Test;
 
 public class Login {
 
+	@SuppressWarnings("deprecation")
 	@Test
 	public void loginApplication() throws InterruptedException, IOException, AWTException {
 		
@@ -28,14 +30,15 @@ public class Login {
         
         int users = rd.numberOfUsers();
         
-        System.out.println("Number of Users:"+users);
+        System.out.println("Number of Users:"+(users - 1));
         
-        for (int i=6; i<users; i++) {
+        for (int i=1; i<users; i++) {
         	
         	String uname = rd.readData(i, "UserName");
             String pwd = rd.readData(i, "Password");
             String env = rd.readData(i, "Env");
             String user = rd.readData(i, "User");
+            String location = rd.readData(i, "Location");
             String filepath = rd.readData(i, "Files");
             
             System.out.println("Username:"+uname);
@@ -44,7 +47,7 @@ public class Login {
             
             Thread.sleep(3000);
     		
-    		System.setProperty("webdriver.chrome.driver", "C:\\Users\\spand\\eclipse-workspace19\\FTS_Automation\\src\\test\\resources\\chromedriver_v96.exe");
+    		System.setProperty("webdriver.chrome.driver", "C:\\Users\\SPenumetcha\\git\\FTS-Automation\\src\\test\\resources\\chromedriver_v96.exe");
     		
     		ChromeOptions cap = new ChromeOptions();
     		cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
@@ -61,6 +64,8 @@ public class Login {
     		}
     		driver.manage().window().maximize();
     		
+    		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+    		
     //Verify page title
     		
     		String expectedresult = driver.getTitle();
@@ -69,12 +74,12 @@ public class Login {
     		if(expectedresult.equals(actualresult))
     		{
     			System.out.println("Test pass");
-    			
     		}
     		else
     		{
     			System.out.println("Test Fail");
     	    }
+    		
              Thread.sleep(3000);
              
              LoginPom.setUserName(driver).sendKeys(uname);
@@ -89,10 +94,10 @@ public class Login {
              
              Thread.sleep(3000);
              
-             if(user.equals("ginc") && env.equals("ST"))
+             if(!location.equals(""))
              {
             	 Select drpOrg = new Select(LoginPom.selectOrganization(driver));
-            	 drpOrg.selectByVisibleText("Gosnold Inc");
+            	 drpOrg.selectByVisibleText(location);
             	 LoginPom.selectOrganizationButton(driver).click();
              }
              
@@ -215,8 +220,11 @@ public class Login {
                 		else
                 		{
                 			LoginPom.chkHIPAA837P(driver).click();
-                			if (LoginPom.chkHIPAA837I(driver).isSelected())
-                				LoginPom.chkHIPAA837I(driver).click();
+                			if (LoginPom.chkHIPAA837IList(driver).size() != 0)
+                			{
+                				if (LoginPom.chkHIPAA837I(driver).isSelected())
+                					LoginPom.chkHIPAA837I(driver).click();
+                			}
                 		}
                 	}
                 	else

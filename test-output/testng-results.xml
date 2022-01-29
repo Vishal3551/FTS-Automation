@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Suite" duration-ms="713385" started-at="2022-01-09T18:52:54Z" finished-at="2022-01-09T19:04:47Z">
+  <suite started-at="2022-01-29T11:44:52 EST" name="Suite" finished-at="2022-01-29T11:48:33 EST" duration-ms="220526">
     <groups>
     </groups>
-    <test name="Test" duration-ms="713385" started-at="2022-01-09T18:52:54Z" finished-at="2022-01-09T19:04:47Z">
+    <test started-at="2022-01-29T11:44:52 EST" name="Test" finished-at="2022-01-29T11:48:33 EST" duration-ms="220526">
       <class name="com.fts.pages.Login">
-        <test-method status="PASS" signature="loginApplication()[pri:0, instance:com.fts.pages.Login@2d928643]" name="loginApplication" duration-ms="713336" started-at="2022-01-09T18:52:54Z" finished-at="2022-01-09T19:04:47Z">
+        <test-method signature="loginApplication()[pri:0, instance:com.fts.pages.Login@4d465b11]" started-at="2022-01-29T11:44:52 EST" name="loginApplication" finished-at="2022-01-29T11:48:33 EST" duration-ms="220426" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loginApplication -->
